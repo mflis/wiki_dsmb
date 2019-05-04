@@ -15,7 +15,7 @@ from wiki_dsmb.token_trie import TokenTrie
 class Wiki:
     #pages = {}
 
-    def __init__(self, path, min_sense_prob=0.01, output=sys.stdout):
+    def __init__(self, path, links_file='links.tsv', min_sense_prob=0.01, output=sys.stdout):
         self.data_path = path
         self.min_sense_prob = min_sense_prob
         self.output = output
@@ -23,6 +23,7 @@ class Wiki:
         self.sense_cache = {}
         self.concepts_cache = {}
         self.use_cache = False
+        self.links_file = links_file
 
     def load(self):
         self._load_pages()
@@ -353,7 +354,7 @@ class Wiki:
         self.senses = {}
         start_time = time.time()
         missing_senses = 0
-        with open(self.data_path + 'links.tsv') as f:
+        with open(self.data_path + self.links_file) as f:
             for row in f:
                 try:
                     _, _, _, sense, link = row.rstrip().split('\t')

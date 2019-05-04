@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="wiki_dsmb",
-    version="0.1.0",
+    version="0.1.1",
     author="Example Author",
     author_email="author@example.com",
     description="A small example package",
